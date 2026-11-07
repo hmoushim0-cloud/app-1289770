@@ -27,6 +27,7 @@ fun HomeScreen(
     onItemClick: (QiyadaKeyItem) -> Unit
 ) {
     val categories = listOf("الكل", "الخدمات الرئيسية", "المراقبة الحية", "التقارير الضريبية", "الإعدادات")
+    val fallbackPeripheral = "OBD-II CAN-Bus Telematics + BLE Digital Key Fob"
 
     Column(
         modifier = Modifier
@@ -36,8 +37,8 @@ fun HomeScreen(
     ) {
         // Header
         Column {
-            Text("تطبيق قيادة الرقمي — تصميم وتنسيق قالب Word احترا", fontSize = 22.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
-            Text("منظومة car_rental المتكاملة مع ربط OBD-II CAN-Bus Telematics + BLE Digital Key Fob", fontSize = 12.sp, color = BrandTextSecondary)
+            Text("قيادة الرقمي — منصة التأجير وإدارة الأساطيل", fontSize = 22.sp, fontWeight = FontWeight.Black, color = BrandTextPrimary)
+            Text("منظومة car_rental المتكاملة مع المفتاح الرقمي وتيليمتريكس المركبات OBD-II CAN-Bus", fontSize = 12.sp, color = BrandTextSecondary)
         }
 
         // Hardware Status Capsule
@@ -52,8 +53,8 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("العتاد الحي: ${state.telemetry?.peripheralName ?: 'OBD-II CAN-Bus Telematics + BLE Digital Key Fob'}", fontWeight = FontWeight.Bold, color = BrandPrimary, fontSize = 13.sp)
-                    Text(state.telemetry?.liveReading ?: "OBD-II CAN-Bus Telematics + BLE Digital Key Fob: ONLINE | READY", fontSize = 11.sp, color = BrandTextSecondary)
+                    Text("العتاد الحي: ${state.telemetry?.peripheralName ?: fallbackPeripheral}", fontWeight = FontWeight.Bold, color = BrandPrimary, fontSize = 13.sp)
+                    Text(state.telemetry?.liveReading ?: "OBD-II CAN-Bus: ONLINE | READY", fontSize = 11.sp, color = BrandTextSecondary)
                 }
                 Badge(containerColor = BrandPrimary) {
                     Text(state.telemetry?.status ?: "ONLINE", color = Color.Black, fontWeight = FontWeight.Bold, modifier = Modifier.padding(2.dp))

@@ -15,6 +15,8 @@ import sa.factory.qiyadakeycarrental.ui.viewmodel.QiyadaKeyUiState
 
 @Composable
 fun TelemetryScreen(state: QiyadaKeyUiState) {
+    val fallbackPeripheral = "OBD-II CAN-Bus Telematics + BLE Digital Key Fob"
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -36,10 +38,10 @@ fun TelemetryScreen(state: QiyadaKeyUiState) {
                         Text(state.telemetry?.status ?: "ONLINE", color = Color.Black, fontWeight = FontWeight.Bold, modifier = Modifier.padding(4.dp))
                     }
                 }
-                Text("اسم العتاد: ${state.telemetry?.peripheralName ?: 'OBD-II CAN-Bus Telematics + BLE Digital Key Fob'}", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
+                Text("اسم العتاد: ${state.telemetry?.peripheralName ?: fallbackPeripheral}", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
                 Text("جودة الإشارة: ${state.telemetry?.signalDbm ?: -58} dBm  •  البطارية: ${state.telemetry?.batteryPct ?: 98}%", color = BrandSecondary, fontSize = 12.sp)
                 
-                Divider(color = BrandCard)
+                HorizontalDivider(color = BrandCard)
                 Text("حزمة البيانات اللحظية (Raw Telemetry Payload):", color = BrandTextSecondary, fontSize = 11.sp)
                 Surface(
                     shape = RoundedCornerShape(8.dp),
@@ -47,7 +49,7 @@ fun TelemetryScreen(state: QiyadaKeyUiState) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = state.telemetry?.liveReading ?: "OBD-II CAN-Bus Telematics + BLE Digital Key Fob: ONLINE | READY",
+                        text = state.telemetry?.liveReading ?: "OBD-II CAN-Bus: ONLINE | READY",
                         color = BrandPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Medium,
@@ -64,9 +66,9 @@ fun TelemetryScreen(state: QiyadaKeyUiState) {
         ) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text("معايير الامتثال والحوكمة", fontWeight = FontWeight.Bold, color = BrandTextPrimary, fontSize = 14.sp)
-                Text("✓ تشفير كامل للاتصال الطرفي (AES-256 GCM)", color = BrandTextSecondary, fontSize = 12.sp)
-                Text("✓ مطابقة اشتراطات هيئة الاتصالات والفضاء والتقنية", color = BrandTextSecondary, fontSize = 12.sp)
-                Text("✓ مزامنة فورية خالية من الإيموجي ومتوافقة مع المعايير السعودية", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("[OK] تشفير كامل للاتصال الطرفي (AES-256 GCM)", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("[OK] مطابقة اشتراطات هيئة الاتصالات والفضاء والتقنية", color = BrandTextSecondary, fontSize = 12.sp)
+                Text("[OK] مزامنة فورية متوافقة مع المعايير السعودية", color = BrandTextSecondary, fontSize = 12.sp)
             }
         }
     }
